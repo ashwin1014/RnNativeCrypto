@@ -6,11 +6,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
 
 import Portfolio from '../screens/portfolio/portfolio';
-import Markets from '../screens/markets/markets';
 import { BOTTOM_TABS_STACK } from '../constants';
 import { HomeIcon, PortfolioIcon, SettingsIcon } from '../components/icons';
 import Settings from '../screens/settings/settings';
 import { INTL_NAMESPACE } from '../i18n/constants';
+import MarketsTopTabs from './markets-top-tabs';
 
 
 const BottomTabs = createBottomTabNavigator();
@@ -34,42 +34,51 @@ const BottomTabNavigator = () => {
   return (
     <View style={styles.wrapper}>
       <BottomTabs.Navigator
-      screenOptions={{ tabBarStyle: styles.tabBar, headerShown: false }}
-      initialRouteName={BOTTOM_TABS_STACK.MARKETS}
+        screenOptions={{ tabBarStyle: styles.tabBar, headerShown: false }}
+        initialRouteName={BOTTOM_TABS_STACK.MARKETS}
       >
       <BottomTabs.Screen
         name={BOTTOM_TABS_STACK.MARKETS}
-        component={Markets}
         options={{
           tabBarAccessibilityLabel: t('common:tabs.markets'),
           tabBarIcon: HomeIcon,
           tabBarInactiveTintColor: theme.textSecondary,
           tabBarActiveTintColor: theme.primary,
           tabBarLabel: t('common:tabs.markets'),
+          tabBarTestID: 'MarketsTab',
         }}
-      />
+        key="MarketsTab"
+      >
+        {(props) => <MarketsTopTabs key="marketsTab" {...props} />}
+      </BottomTabs.Screen>
       <BottomTabs.Screen
         name={BOTTOM_TABS_STACK.PORTFOLIO}
-        component={Portfolio}
         options={{
           tabBarAccessibilityLabel: t('common:tabs.portfolio'),
           tabBarIcon: PortfolioIcon,
           tabBarInactiveTintColor: theme.textSecondary,
           tabBarActiveTintColor: theme.primary,
           tabBarLabel: t('common:tabs.portfolio'),
+          tabBarTestID: 'PortfolioTab',
         }}
-      />
+        key="PortfolioTab"
+      >
+        {(props) => <Portfolio {...props} key={props.route.key} />}
+      </BottomTabs.Screen>
       <BottomTabs.Screen
         name={BOTTOM_TABS_STACK.SETTINGS}
-        component={Settings}
         options={{
           tabBarAccessibilityLabel: t('common:tabs.settings'),
           tabBarIcon: SettingsIcon,
           tabBarInactiveTintColor: theme.textSecondary,
           tabBarActiveTintColor: theme.primary,
           tabBarLabel: t('common:tabs.settings'),
+          tabBarTestID: 'SettingsTab',
         }}
-      />
+        key="SettingsTab"
+      >
+        {(props) => <Settings {...props} key={props.route.key} />}
+      </BottomTabs.Screen>
     </BottomTabs.Navigator>
     </View>
   );

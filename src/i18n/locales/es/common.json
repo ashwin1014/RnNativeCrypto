@@ -2,6 +2,10 @@
     "tabs": {
         "markets": "Mercados",
         "portfolio": "Portafolio",
-        "settings": "Configuraciones"
-    }
+        "settings": "Configuraciones",
+        "futures": "Futuros",
+        "options": "Opciones"
+    },
+    "theme": "Tema",
+    "language": "Idioma"
 }

@@ -6,14 +6,14 @@ import { useStyles } from 'react-native-unistyles';
 import marketStyles from './markets.styles';
 import Text from '../../components/text';
 
-const Markets = () => {
+const Futures = () => {
   const { styles } = useStyles(marketStyles);
 
   return (
     <View style={styles.container}>
-      <Text variant="title">Markets Tab!!</Text>
+      <Text variant="title">Futures Tab!!</Text>
     </View>
   );
 };
 
-export default Markets;
+export default Futures;

@@ -2,7 +2,9 @@
     "tabs": {
         "markets": "Markets",
         "portfolio": "Portfolio",
-        "settings": "Settings"
+        "settings": "Settings",
+        "futures": "Futures",
+        "options": "Options"
     },
     "theme": "Theme",
     "language": "Language"

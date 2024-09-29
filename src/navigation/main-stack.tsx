@@ -15,7 +15,9 @@ const MainStack = () => {
       }}
       initialRouteName={MAIN_STACK.MAIN}
     >
-      <Stack.Screen name={MAIN_STACK.MAIN} component={BottomTabNavigator} />
+      <Stack.Screen name={MAIN_STACK.MAIN} key="mainTab">
+        {() => <BottomTabNavigator key="bottomTabNavigator" />}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 };

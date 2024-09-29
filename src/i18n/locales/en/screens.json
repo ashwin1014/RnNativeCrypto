@@ -1,1 +1,6 @@
-{}
+{
+    "dark": "Dark",
+    "light": "Light",
+    "english": "English",
+    "spanish": "Spanish"
+}

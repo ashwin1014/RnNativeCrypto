@@ -7,20 +7,22 @@ import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-c
 import { enableFreeze } from 'react-native-screens';
 import ErrorBoundary from 'react-native-error-boundary';
 import { useInitialTheme, createStyleSheet, useStyles } from 'react-native-unistyles';
+import { View } from 'react-native';
 
 import AppNavigator from './src/navigation/app-navigator';
 import { ColorScheme } from './src/theme/constants';
 import { STORAGE_KEYS } from './src/constants';
 import useLocalStorage from './src/hooks/useLocalStorage';
-import { View } from 'react-native';
+import { ServiceProvider } from './src/providers/service-provider';
+import { stringifyPretty } from './src/utils/common';
 
 import './src/i18n/config';
 
 enableFreeze(true);
 
 const errorHandler = (error: Error, stackTrace: string) => {
-  console.log('Error: ', error);
-  console.log('Stack Trace: ', stackTrace);
+  console.log('Error: ', stringifyPretty(error));
+  console.log('Stack Trace: ', stringifyPretty(stackTrace));
 };
 
 const themedStyles = createStyleSheet((theme, rt) => ({
@@ -50,7 +52,9 @@ const App = () => {
       <ErrorBoundary onError={errorHandler}>
           <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <GestureHandlerRootView style={styles.gestureRoot}>
-              <AppNavigator />
+              <ServiceProvider>
+                <AppNavigator />
+              </ServiceProvider>
             </GestureHandlerRootView>
           </SafeAreaProvider>
       </ErrorBoundary>
