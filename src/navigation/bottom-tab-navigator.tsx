@@ -34,7 +34,7 @@ const BottomTabNavigator = () => {
   return (
     <View style={styles.wrapper}>
       <BottomTabs.Navigator
-        screenOptions={{ tabBarStyle: styles.tabBar, headerShown: false, lazy: true, freezeOnBlur: true }}
+        screenOptions={{ tabBarStyle: styles.tabBar, headerShown: false, lazy: true, freezeOnBlur: true, unmountOnBlur: true }}
         initialRouteName={BOTTOM_TABS_STACK.MARKETS}
       >
       <BottomTabs.Screen

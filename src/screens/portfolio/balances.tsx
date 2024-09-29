@@ -11,7 +11,10 @@ const Balances = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Balances Tab!!</Text>
+      <View style={styles.balancesCard}>
+        <Text variant="subtitle" color="textSecondary">Equity</Text>
+        <Text variant="body" color="textPrimary">$512,123.12  <Text variant="caption">~BTC 12.12345678</Text></Text>
+      </View>
     </View>
   );
 };

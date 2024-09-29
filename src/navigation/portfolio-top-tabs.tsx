@@ -7,6 +7,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
+
 import { INTL_NAMESPACE } from '../i18n/constants';
 import { SCREEN_WIDTH } from '../utils/common';
 import { PORTFOLIO_TABS_STACK } from '../constants';
@@ -43,7 +44,6 @@ const PortfolioTopTabs = () => {
                 renderToHardwareTextureAndroid
                 tabBarPosition="top"
                 screenOptions={{
-                    lazy: true,
                     tabBarStyle: styles.tabBar,
                     tabBarActiveTintColor: theme.primary,
                     tabBarInactiveTintColor: theme.textSecondary,
@@ -53,27 +53,24 @@ const PortfolioTopTabs = () => {
                 initialLayout={{
                     width: SCREEN_WIDTH,
                 }}
+                initialRouteName={PORTFOLIO_TABS_STACK.HOLDINGS}
             >
                 <PortfolioTopTabsNavigator.Screen
                     name={PORTFOLIO_TABS_STACK.BALANCES}
+                    component={Balances}
                     options={{
                         tabBarLabel: t('common:tabs.balances'),
-                        tabBarTestID: 'PortfolioBalancesTab'   ,
+                        tabBarTestID: 'PortfolioBalancesTab',
                     }}
-                    key="PortfolioBalancesTab"
-                >
-                    {(props) => <Balances {...props} key={props.route.key} />}
-                </PortfolioTopTabsNavigator.Screen>
+                 />
                 <PortfolioTopTabsNavigator.Screen
+                component={Holdings}
                     name={PORTFOLIO_TABS_STACK.HOLDINGS}
                     options={{
                         tabBarLabel: t('common:tabs.holdings'),
                         tabBarTestID: 'PortfolioHoldingsTab',
                     }}
-                    key="PortfolioHoldingsTab"
-                >
-                    {(props) => <Holdings {...props} key={props.route.key} />}
-                </PortfolioTopTabsNavigator.Screen>
+                 />
             </PortfolioTopTabsNavigator.Navigator>
         </View>
     );
