@@ -4,7 +4,9 @@
         "portfolio": "Portfolio",
         "settings": "Settings",
         "futures": "Futures",
-        "options": "Options"
+        "options": "Options",
+        "balances": "Balances",
+        "holdings": "Holdings"
     },
     "theme": "Theme",
     "language": "Language"

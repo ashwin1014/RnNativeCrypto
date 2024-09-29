@@ -18,7 +18,7 @@ i18n
       useSuspense: false,
     },
     resources,
-    debug: true,
+    debug: __DEV__,
   });
 
 export default i18n;

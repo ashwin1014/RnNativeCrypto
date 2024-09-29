@@ -5,12 +5,12 @@ import { createStyleSheet, useStyles } from 'react-native-unistyles';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTranslation } from 'react-i18next';
 
-import Portfolio from '../screens/portfolio/portfolio';
 import { BOTTOM_TABS_STACK } from '../constants';
 import { HomeIcon, PortfolioIcon, SettingsIcon } from '../components/icons';
 import Settings from '../screens/settings/settings';
 import { INTL_NAMESPACE } from '../i18n/constants';
 import MarketsTopTabs from './markets-top-tabs';
+import PortfolioTopTabs from './portfolio-top-tabs';
 
 
 const BottomTabs = createBottomTabNavigator();
@@ -34,7 +34,7 @@ const BottomTabNavigator = () => {
   return (
     <View style={styles.wrapper}>
       <BottomTabs.Navigator
-        screenOptions={{ tabBarStyle: styles.tabBar, headerShown: false }}
+        screenOptions={{ tabBarStyle: styles.tabBar, headerShown: false, lazy: true, freezeOnBlur: true }}
         initialRouteName={BOTTOM_TABS_STACK.MARKETS}
       >
       <BottomTabs.Screen
@@ -63,7 +63,7 @@ const BottomTabNavigator = () => {
         }}
         key="PortfolioTab"
       >
-        {(props) => <Portfolio {...props} key={props.route.key} />}
+        {(props) => <PortfolioTopTabs {...props} key={props.route.key} />}
       </BottomTabs.Screen>
       <BottomTabs.Screen
         name={BOTTOM_TABS_STACK.SETTINGS}

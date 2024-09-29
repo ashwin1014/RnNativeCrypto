@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import React, { useEffect, type ReactNode } from 'react';
 
 import { AppStateStatus } from 'react-native';
 
@@ -33,7 +33,11 @@ useAppState(onAppStateChange);
 
 const isOnline = onlineManager.isOnline();
 
-console.log('isOnline', isOnline);
+useEffect(() => {
+  if (!isOnline) {
+    console.log('isOnline', isOnline);
+  }
+}, [isOnline]);
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -4,14 +4,15 @@ import { Text as RNText, TextProps as RNTextProps } from 'react-native';
 import { createStyleSheet, useStyles } from 'react-native-unistyles';
 
 interface TextProps extends RNTextProps {
-  variant?: 'title' | 'subtitle' | 'body' | 'caption';
-  color?: 'textPrimary' | 'textSecondary' | 'primaryColor'
+  variant?: 'title' | 'subtitle' | 'body' | 'caption' | 'label';
+  color?: 'textPrimary' | 'textSecondary' | 'primaryColor' | 'error' | 'success';
+  truncate?: boolean;
+  weight?: 'bold' | 'normal' | 'medium';
 }
 
 const themedStyles = createStyleSheet((theme) => ({
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
   },
   subtitle: {
     fontSize: 18,
@@ -22,6 +23,9 @@ const themedStyles = createStyleSheet((theme) => ({
   caption: {
     fontSize: 12,
   },
+  label: {
+    fontSize: 10,
+  },
   textPrimary: {
     color: theme.textPrimary,
   },
@@ -31,19 +35,37 @@ const themedStyles = createStyleSheet((theme) => ({
   textSecondary: {
     color: theme.textSecondary,
   },
+  error: {
+    color: theme.error,
+  },
+  success: {
+    color: theme.success,
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  normal: {
+    fontWeight: 'normal',
+  },
+  medium: {
+    fontWeight: 'medium',
+  },
 }));
 
-const Text = ({ variant = 'body', color = 'textPrimary', style, ...props }: TextProps) => {
+const Text = ({ variant = 'body', color = 'textPrimary', weight = 'normal', style, truncate, ...props }: TextProps) => {
   const { styles } = useStyles(themedStyles);
 
 
   const combinedStyles = useMemo(() => [
     styles[variant],
     styles[color],
+    styles[weight],
     style,
-  ], [styles, variant, color, style]);
+  ], [styles, variant, color, weight, style]);
 
-  return <RNText {...props} style={combinedStyles} />;
+  const truncateProps = truncate ? { ellipsizeMode: 'tail' as const, numberOfLines: 1 } : {};
+
+  return <RNText {...truncateProps} {...props} style={combinedStyles} />;
 };
 
 export default Text;
