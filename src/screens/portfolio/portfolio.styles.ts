@@ -31,6 +31,9 @@ const portfolioStyles = createStyleSheet((theme) => ({
   positionSymbol: {
     marginBottom: GUTTERS.sm,
   },
+  holdingItem: {
+    flex: 0.3,
+  },
 }));
 
 export default portfolioStyles;

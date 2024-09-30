@@ -52,7 +52,7 @@ const Futures = () => {
 
   return (
     <View style={styles.container}>
-      <FuturesTableHeader />
+      <FuturesTableHeader isOptions={false} />
       {
         showLoading ? <ActivityIndicator size="large" color={theme.primary} /> : (
           <FlashList
